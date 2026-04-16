@@ -11,6 +11,8 @@ move to backend folder and run artisan command.
 
 if you add any new library please add in this file with timestamp
 
+backend have it's own branch "Backend"
+
 ### New Library
 
 
