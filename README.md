@@ -8,7 +8,7 @@ php artisan serve
 ```
 
 move to backend folder and run artisan command.
-
+<li> 17 04 26 </li>
 ```jaavscript
 php artisan storage:link
 ```
@@ -22,7 +22,7 @@ php artisan migrate:fresh
 when you want to migrate the database make sure that use migrate:fresh cause laravel has its own default migrations that can cause conflict
 
 if you add any new library please add in this file with timestamp
-
+<li> 16 04 26 </li>
 backend have it's own branch "Backend"
 
 ### New Library
