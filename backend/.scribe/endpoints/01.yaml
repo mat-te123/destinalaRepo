@@ -1,0 +1,93 @@
+name: 'Profil & Kustomisasi'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/admin/profile
+    metadata:
+      custom: []
+      groupName: 'Profil & Kustomisasi'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: |-
+        Ambil Profil Perusahaan
+        * Digunakan Frontend untuk mengambil Logo, Warna, dan Alias Menu.
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+          "AboutUs": "Deskripsi perusahaan...",
+          "ServiceLabelAlias": "Produk Kami",
+          "PackageLabelAlias": "Pilihan Paket Wisata",
+          "Address": "Yogyakarta, Indonesia"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+    uri: api/admin/profile
+    metadata:
+      custom: []
+      groupName: 'Profil & Kustomisasi'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: |-
+        Update Profil
+        * @bodyParam ServiceLabelAlias string Ubah nama menu "Service". Example: Layanan Kami
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      PackageLabelAlias:
+        custom: []
+        name: PackageLabelAlias
+        description: 'Ubah nama menu "Package".'
+        required: false
+        example: 'Paket Spesial'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      PackageLabelAlias: 'Paket Spesial'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
