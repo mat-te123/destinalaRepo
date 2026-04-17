@@ -16,11 +16,11 @@ if you add any new library please add in this file with timestamp
 backend have it's own branch "Backend"
 
 <li> 17 04 26 </li>
-Pada file .env ubah 
+Change this on the .env file
 ```jaavscript
 SESSION_DRIVER=file
 ```
-
+To make storage for the data use this
 ```jaavscript
 php artisan storage:link
 ```
@@ -46,12 +46,12 @@ after updating league/commonmark, publich the configuration to scribe
 php artisan vendor:publish --tag=scribe-config
 ```
 
-after updating league/commonmark, publich the configuration to scribe
+after updating league/commonmark, publish the configuration to scribe
 ```jaavscript
 php artisan scribe:generate
 ```
 
-Setelah generate scribe, jalankan
+After generate the scribe, run this
 ```jaavscript
 php artisan serve
 ```
@@ -59,7 +59,7 @@ lalu masuk ke
 ```jaavscript
 http://127.0.0.1:8000/docs
 ```
-untuk melihat dokumentasi menganai API yang digunakan
+To see the documentation that used for API
 
 ### New Library
 <li> Scribe </li>
