@@ -8,5 +8,5 @@ class ServicePackage extends Model {
     protected $table = 'ServicePackages';
     protected $primaryKey = 'Id';
     public $timestamps = false;
-    protected $fillable = ['TenantId', 'PackageName', 'Price', 'Features', 'IsActive'];
+    protected $fillable = ['TenantId', 'PackageName', 'Price', 'Features', 'IsActive', 'PdfPath'];
 }

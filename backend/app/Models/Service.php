@@ -10,5 +10,5 @@ class Service extends Model
     protected $table = 'Services';
     protected $primaryKey = 'Id';
     public $timestamps = false;
-    protected $fillable = ['TenantId', 'Title', 'Description', 'Icon', 'IsFeatured'];
+    protected $fillable = ['TenantId', 'Title', 'Description', 'Icon', 'IsFeatured', 'PdfPath'];
 }
