@@ -73,6 +73,9 @@ To see the documentation that used for API
 <li> 27 03 26 </li>
 Edit Dashboard done, learing about how to using <a href="https://craft.js.org/"> craft.js </a> for cuntomize web builder
 
+<li>17 04 26</li>
+implementing craft.js on app and slicing template_1 into app and implementing craft.js
+
 
 
 ### Library installed
