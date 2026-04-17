@@ -9,6 +9,18 @@ php artisan serve
 
 move to backend folder and run artisan command.
 
+```jaavscript
+php artisan storage:link
+```
+
+to make public storage linked to storage app public so the web visitor can open the link on the websites
+
+```jaavscript
+php artisan migrate:fresh
+```
+
+when you want to migrate the database make sure that use migrate:fresh cause laravel has its own default migrations that can cause conflict
+
 if you add any new library please add in this file with timestamp
 
 backend have it's own branch "Backend"
