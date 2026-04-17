@@ -17,10 +17,13 @@ backend have it's own branch "Backend"
 
 <li> 17 04 26 </li>
 Change this on the .env file
+
 ```jaavscript
 SESSION_DRIVER=file
 ```
+
 To make storage for the data use this
+
 ```jaavscript
 php artisan storage:link
 ```
