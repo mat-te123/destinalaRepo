@@ -8,7 +8,19 @@ php artisan serve
 ```
 
 move to backend folder and run artisan command.
+
+if you add any new library please add in this file with timestamp
+
+
+<li> 16 04 26 </li>
+backend have it's own branch "Backend"
+
 <li> 17 04 26 </li>
+Pada file .env ubah 
+```jaavscript
+SESSION_DRIVER=file
+```
+
 ```jaavscript
 php artisan storage:link
 ```
@@ -21,12 +33,36 @@ php artisan migrate:fresh
 
 when you want to migrate the database make sure that use migrate:fresh cause laravel has its own default migrations that can cause conflict
 
-if you add any new library please add in this file with timestamp
-<li> 16 04 26 </li>
-backend have it's own branch "Backend"
+i add scribe
+```jaavscript
+composer require knuckleswtf/scribe
+```
+after installation update your league/commonnmark to make sure the data is afe 
+```jaavscript
+composer update league/commonmark
+```
+after updating league/commonmark, publich the configuration to scribe
+```jaavscript
+php artisan vendor:publish --tag=scribe-config
+```
+
+after updating league/commonmark, publich the configuration to scribe
+```jaavscript
+php artisan scribe:generate
+```
+
+Setelah generate scribe, jalankan
+```jaavscript
+php artisan serve
+```
+lalu masuk ke 
+```jaavscript
+http://127.0.0.1:8000/docs
+```
+untuk melihat dokumentasi menganai API yang digunakan
 
 ### New Library
-
+<li> Scribe </li>
 
 
 ## For Frontend
