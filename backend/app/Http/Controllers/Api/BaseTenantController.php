@@ -3,12 +3,27 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * @authenticated
+ */
+
 class BaseTenantController extends Controller {
     protected $model;
 
+    /**
+     * List Data
+     * * Mengambil semua data yang hanya dimiliki oleh perusahaan yang sedang login.
+     */    
     public function index() {
         return response()->json($this->model::all());
     }
+
+    /**
+     * Simpan Data Baru
+     * * @bodyParam PdfFile file Opsional file PDF.
+     * @bodyParam ImageFile file Opsional file gambar (JPG/PNG).
+     * @bodyParam * string Data lainnya sesuai kolom tabel (CamelCase).
+     */
 
     public function store(Request $request)
     {
@@ -45,9 +60,20 @@ class BaseTenantController extends Controller {
         ], 201);
     }
 
+    /**
+     * Detail Data
+     * * @urlParam id integer required ID data. Example: 1
+     */
+
     public function show($id) {
         return response()->json($this->model::findOrFail($id));
     }
+
+    /**
+     * Update Data
+     * * @urlParam id integer required ID data.
+     * @bodyParam _method string required Gunakan "PUT" jika mengirim via Form-Data. Example: PUT
+     */
 
     public function update(Request $request, $id) {
         $item = $this->model::findOrFail($id);
@@ -55,6 +81,11 @@ class BaseTenantController extends Controller {
         return response()->json(['message' => 'Data Berhasil Diperbarui']);
     }
 
+    /**
+     * Hapus Data
+     * * @urlParam id integer required ID data yang akan dihapus.
+     */
+    
     public function destroy($id) {
         $this->model::findOrFail($id)->delete();
         return response()->json(['message' => 'Data Berhasil Dihapus']);

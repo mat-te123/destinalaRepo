@@ -9,10 +9,31 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Authentication
+ * * APIs untuk login dan logout admin perusahaan
+ */
 class AuthController extends Controller
 {
     /**
-     * Handle Login Admin
+     * Login Admin
+     * * Gunakan endpoint ini untuk mendapatkan Bearer Token. 
+     * Token ini wajib dikirim di header "Authorization" untuk semua API Admin.
+     * * @bodyParam Email string required Email admin. Example: admin@travel.com
+     * @bodyParam Password string required Password akun. Example: password123
+     * @bodyParam Slug string required Slug unik perusahaan (dari URL). Example: travel-gadjah
+     * * @response {
+     * "Token": "1|rahasia_token_sanctum_kamu",
+     * "User": {
+     * "Id": 1,
+     * "Name": "Admin Gadjah",
+     * "Email": "admin@travel.com",
+     * "TenantId": 1
+     * }
+     * }
+     * @response 401 {
+     * "message": "Login Gagal, periksa email/password atau slug perusahaan."
+     * }
      */
     public function login(Request $request)
     {

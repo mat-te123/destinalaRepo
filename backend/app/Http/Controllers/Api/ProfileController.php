@@ -1,17 +1,43 @@
 <?php
+
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
+
 use App\Models\CompanyProfile;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller {
-    public function show() {
+/**
+ * @group Profil & Kustomisasi
+ * @authenticated
+ * * API untuk mengatur tampilan landing page perusahaan.
+ */
+class ProfileController extends BaseTenantController
+{
+    public function __construct() {
+        $this->model = CompanyProfile::class;
+    }
+
+    /**
+     * Ambil Profil Perusahaan
+     * * Digunakan Frontend untuk mengambil Logo, Warna, dan Alias Menu.
+     * @response {
+     * "AboutUs": "Deskripsi perusahaan...",
+     * "ServiceLabelAlias": "Produk Kami",
+     * "PackageLabelAlias": "Pilihan Paket Wisata",
+     * "Address": "Yogyakarta, Indonesia"
+     * }
+     */
+    public function show($id = null) {
         return response()->json(CompanyProfile::first());
     }
 
-    public function update(Request $request) {
+    /**
+     * Update Profil
+     * * @bodyParam ServiceLabelAlias string Ubah nama menu "Service". Example: Layanan Kami
+     * @bodyParam PackageLabelAlias string Ubah nama menu "Package". Example: Paket Spesial
+     */
+    public function update(Request $request, $id = null) {
         $profile = CompanyProfile::first();
         $profile->update($request->all());
-        return response()->json(['message' => 'Profil Perusahaan Diperbarui']);
+        return response()->json(['message' => 'Profile Updated']);
     }
 }

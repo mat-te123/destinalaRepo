@@ -4,7 +4,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable {
-    use HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'Users';
     protected $primaryKey = 'Id';
     public $timestamps = false;
