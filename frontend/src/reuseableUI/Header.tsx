@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router";
+import { Button } from "@heroui/react";
+
+
 function Header() {
   const HomeIcon: string = "./HomeSmall.png";
   const DesktopIcon: string = "./Desktop.png";
@@ -6,6 +10,12 @@ function Header() {
   const RightIcon: string = "./ArrowUUpRight.png";
   const SaveIcon: string = "./FloppyDisk.png";
   const Dropdown: string = "./DropDown.png";
+
+  const navigate = useNavigate();
+
+  const PreviewPage = () => {
+    navigate("/preview");
+  };
 
   return (
     <header className="flex w-full h-14 items-center border-b border-[#D7D7D7] font-main bg-white">
@@ -48,10 +58,10 @@ function Header() {
 
       {/* Preview and Save */}
       <div className="flex items-center gap-6 px-4 h-full">
-        <div className="flex items-center gap-2">
-          <img src={SaveIcon} alt="Save" className="w-5 h-5" />
-          <span className="text-sm font-medium">Preview</span>
-        </div>
+        <Button variant="ghost" onClick={PreviewPage} className="flex items-center gap-2">
+          <img src={SaveIcon} alt="Save" />
+          Preview
+        </Button>
         <button className="rounded-full bg-black py-1.5 px-6 text-sm text-white font-medium hover:bg-gray-800 transition-colors">
           Publish
         </button>
