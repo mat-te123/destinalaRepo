@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router";
 import { Button } from "@heroui/react";
 
-
-function Header() {
+interface HeaderProps {
+  // Define any props for the header if needed
+  
+}
+function Header({}: HeaderProps) {
   const HomeIcon: string = "./HomeSmall.png";
   const DesktopIcon: string = "./Desktop.png";
   const MobileIcon: string = "./Mobile.png";
@@ -12,7 +15,6 @@ function Header() {
   const Dropdown: string = "./DropDown.png";
 
   const navigate = useNavigate();
-
   const PreviewPage = () => {
     navigate("/preview");
   };

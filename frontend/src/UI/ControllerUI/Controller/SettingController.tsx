@@ -23,10 +23,16 @@ function SettingController() {
   });
 
   console.log("Selected Text Props:", selected);
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      actions.clearEvents();
+    }
+  });
 
   return selected && selected.settings ? (
     <div>
-      {selected.settings ? (
+      {selected.settings  ? (
         React.createElement(selected.settings)
       ) : (
         <div>No settings available for this element.</div>

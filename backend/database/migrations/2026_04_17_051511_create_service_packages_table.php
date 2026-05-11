@@ -28,6 +28,6 @@ public function up()
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_packages');
+        Schema::dropIfExists('ServicePackages');
     }
 };

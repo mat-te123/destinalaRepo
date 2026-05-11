@@ -38,32 +38,30 @@ function Hero1({
       custom={{ displayName: "Hero Section" }}
       hasoverlay={true}
       minHeight="100vh"
+      backgroundType="image"
     >
       <TextComponent
         context={MainFont || ""}
         fontColor="#ffffff"
-        fontSize={"58px"}
+        fontSize={"60px"}
         fontWeight={mainFontWeight || 600}
         letterSpacing={"-3px"}
+        textAlign="center"
       />
-      <Element
-        id="textButtonContainer"
-        canvas
-        is={Container}
-        background=""
-        gap={20}
-      >
+      <div className="flex flex-col items-center gap-6 mt-6">
         <TextComponent
           context={SubFont || ""}
           fontColor="#ffffff"
-          fontSize="34px"
+          fontSize="36px"
         />
         <ButtonComponent
           context={ButtonText || ""}
           radius={10}
           backgroundColor="transparent"
+          border="solid 2px white"
+          fontSize="20px"
         />
-      </Element>
+      </div>
     </Element>
   );
 }

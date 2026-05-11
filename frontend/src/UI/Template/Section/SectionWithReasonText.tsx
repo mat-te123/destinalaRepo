@@ -19,6 +19,8 @@ function SectionWithReasonText({
       canvas
       is={Container}
       background={BackgroundImage || "#ffffff"}
+      backgroundType="image"
+      
       padding={[200, 150]}
     >
       <Element

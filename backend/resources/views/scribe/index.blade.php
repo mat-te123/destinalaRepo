@@ -198,7 +198,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 17, 2026</li>
+        <li>Last updated: April 20, 2026</li>
     </ul>
 </div>
 
@@ -677,7 +677,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "*=consequatur"\
-    --form "ImageFile=@C:\Users\Daveena Alexandra\AppData\Local\Temp\php4567.tmp" </code></pre></div>
+    --form "ImageFile=@/tmp/phpne7Q3D" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -786,7 +786,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Opsional file gambar (JPG/PNG). Example: <code>C:\Users\Daveena Alexandra\AppData\Local\Temp\php4567.tmp</code></p>
+<p>Opsional file gambar (JPG/PNG). Example: <code>/tmp/phpne7Q3D</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>*</code></b>&nbsp;&nbsp;
@@ -1364,7 +1364,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "*=consequatur"\
-    --form "ImageFile=@C:\Users\Daveena Alexandra\AppData\Local\Temp\php4643.tmp" </code></pre></div>
+    --form "ImageFile=@/tmp/phpcvfYzw" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1473,7 +1473,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Opsional file gambar (JPG/PNG). Example: <code>C:\Users\Daveena Alexandra\AppData\Local\Temp\php4643.tmp</code></p>
+<p>Opsional file gambar (JPG/PNG). Example: <code>/tmp/phpcvfYzw</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>*</code></b>&nbsp;&nbsp;
@@ -2051,7 +2051,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "*=consequatur"\
-    --form "ImageFile=@C:\Users\Daveena Alexandra\AppData\Local\Temp\php470F.tmp" </code></pre></div>
+    --form "ImageFile=@/tmp/phpoa4IgV" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2160,7 +2160,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Opsional file gambar (JPG/PNG). Example: <code>C:\Users\Daveena Alexandra\AppData\Local\Temp\php470F.tmp</code></p>
+<p>Opsional file gambar (JPG/PNG). Example: <code>/tmp/phpoa4IgV</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>*</code></b>&nbsp;&nbsp;
@@ -2742,7 +2742,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "*=consequatur"\
-    --form "ImageFile=@C:\Users\Daveena Alexandra\AppData\Local\Temp\php4372.tmp" </code></pre></div>
+    --form "ImageFile=@/tmp/phpTO1aze" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2851,7 +2851,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Opsional file gambar (JPG/PNG). Example: <code>C:\Users\Daveena Alexandra\AppData\Local\Temp\php4372.tmp</code></p>
+<p>Opsional file gambar (JPG/PNG). Example: <code>/tmp/phpTO1aze</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>*</code></b>&nbsp;&nbsp;

@@ -1,7 +1,7 @@
 import ContentEditable from "react-contenteditable";
 import { useNode } from "@craftjs/core";
 import { useEffect, useState } from "react";
-import { Button } from "@heroui/react";
+import { Button, Label, ListBox, Select } from "@heroui/react";
 
 interface ButtonProps {
   context: string;
@@ -17,16 +17,18 @@ interface ButtonProps {
     | "danger"
     | "danger-soft";
   radius?: number;
+  border?: string;
+  padding?: number[];
 }
 
 // MainComponent
 export const ButtonComponent = ({
-  context,
+  context = "Click to edit button",
   backgroundColor,
   textColor,
   fontSize,
-  variant = "primary",
   radius = 100,
+  border = "none",
 }: ButtonProps) => {
   const {
     connectors: { connect, drag },
@@ -38,6 +40,15 @@ export const ButtonComponent = ({
 
   const [editable, setEditable] = useState(false);
 
+  const dynamicStyle = {
+    color: textColor || "#FFFFFF",
+    fontSize: fontSize || "16px",
+    borderRadius: `${radius}px`,
+    backgroundColor: backgroundColor || "#007BFF",
+    border: border || "none",
+    padding: "1.5em 1.5em",
+  };
+
   useEffect(() => {
     if (hasSelectedNode) {
       setEditable(true);
@@ -48,13 +59,7 @@ export const ButtonComponent = ({
 
   return (
     <Button
-      variant={variant}
-      style={{
-        color: textColor,
-        fontSize,
-        borderRadius: `${radius}px`,
-        backgroundColor: backgroundColor,
-      }}
+      style={dynamicStyle}
       ref={(ref) => {
         if (ref) {
           connect(drag(ref));
@@ -85,47 +90,57 @@ export const ButtonSettings = () => {
     fontSize: node.data.props.fontSize,
   }));
 
+  const start = 4;
+  const end = 100;
+  const step = 4;
+  const fontSizeOptions = Array.from(
+    { length: (end - start) / step + 1 },
+    (_, i) => start + i * step,
+  );
+
+  console.log("Button Settings Props:", {
+    backgroundColor,
+    textColor,
+    fontSize,
+  });
+
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <div>
-        <h1>Button Settings</h1>
-        <span>Mengganti Tampilan Button</span>
+        <p className="font-bold">Button Settings</p>
+        <span className="text-xs text-gray-500">Mengganti tampilan button</span>
       </div>
-      <div>
-        {/* Background Color */}
-        <label>
-          Background Color:
-          <input
-            type="color"
-            value={backgroundColor}
-            onChange={(e) =>
-              setProp((props: any) => (props.backgroundColor = e.target.value))
-            }
-          />
-        </label>
-        {/* Text Color */}
-        <label>
-          Text Color:
-          <input
-            type="color"
-            value={textColor}
-            onChange={(e) =>
-              setProp((props: any) => (props.textColor = e.target.value))
-            }
-          />
-        </label>
-        {/* Font Size */}
-        <label>
-          Font Size:
-          <input
-            type="text"
+      <div className="border-t-2 pt-5 ">
+        {/* Font Size Selector */}
+        <div className="flex flex-col gap-4 mb-4 w-1/3">
+          <Select
             value={fontSize}
-            onChange={(e) =>
-              setProp((props: any) => (props.fontSize = e.target.value))
+            onChange={(value) =>
+              setProp((props: any) => (props.fontSize = value))
             }
-          />
-        </label>
+          >
+            <Label>Text Size</Label>
+            <Select.Trigger>
+              <Select.Value />
+              <Select.Indicator />
+            </Select.Trigger>
+            <Select.Popover>
+              <ListBox>
+                {fontSizeOptions.map((size) => (
+                  <ListBox.Item
+                    id={`${size}px`}
+                    key={size}
+                    textValue={`${size}px`}
+                  >
+                    {size}px
+                  </ListBox.Item>
+                ))}
+              </ListBox>
+            </Select.Popover>
+          </Select>
+        </div>
       </div>
+      {/* Background Color Selector */}
     </div>
   );
 };
