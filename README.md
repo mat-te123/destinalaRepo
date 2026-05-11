@@ -90,6 +90,9 @@ Edit Dashboard done, learing about how to using <a href="https://craft.js.org/">
 <li>17 04 26</li>
 implementing craft.js on app and slicing template_1 into app and implementing craft.js
 
+<li>11 05 26</li>
+Develop Editor Module On Editor Page
+
 
 
 ### Library installed
