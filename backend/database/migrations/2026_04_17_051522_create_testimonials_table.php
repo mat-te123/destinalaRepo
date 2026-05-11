@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('TenantId')->constrained('Tenants', 'Id')->onDelete('cascade');
             $table->string('CustomerName');
             $table->string('Role')->nullable();
+            $table->string('Destination')->nullable();
             $table->text('Content');
             $table->integer('Rating')->default(5);
             $table->string('AvatarUrl')->nullable();

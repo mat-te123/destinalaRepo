@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PackageController;
 use App\Http\Controllers\Api\TestimonialController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\PageConfigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,8 @@ Route::prefix('v1/public')->group(function () {
     // Mengambil konfigurasi tampilan (Warna, Logo, Nama Menu/Alias)
     // Contoh: /api/v1/public/config?slug=perusahaan-a
     Route::get('/config', [ProfileController::class, 'showPublicConfig']);
-    
+    Route::get('/page-config/{pageKey}', [PageConfigController::class, 'show']);
+
     // Mengambil data konten untuk ditampilkan di landing page
     Route::get('/services', [ServiceController::class, 'indexPublic']);
     Route::get('/packages', [PackageController::class, 'indexPublic']);
@@ -44,7 +46,7 @@ Route::post('/admin/auth/login', [AuthController::class, 'login']);
 
 // 2. Route Admin Terproteksi (Hanya Bisa Diakses Setelah Login)
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
-    
+    Route::post('/page-config/save', [PageConfigController::class, 'store']);
     // Keluar dari sistem
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
