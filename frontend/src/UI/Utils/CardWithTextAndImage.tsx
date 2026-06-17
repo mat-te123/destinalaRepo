@@ -17,8 +17,8 @@ function StaticCardWithTextAndImage({
   isreverse = false,
 }: StaticCardWithTextAndImageProps) {
   return (
-    <div className={`flex flex-row gap-10 items-center p-10 ${isreverse ? "flex-row-reverse bg-gray-100" : ""} `}>
-      <img src="../ContentPlaceholder.jpg" alt="" className="w-150 h-150 object-cover rounded-4xl" />
+    <div className={`flex flex-row gap-8 items-center p-12 ${isreverse ? "flex-row-reverse bg-[#F0F0F0]" : ""} `}>
+      <img src="../ContentPlaceholder.jpg"  className="h-112 object-cover rounded-2xl" />
       <div>{children}</div>
     </div>
   );
@@ -34,8 +34,8 @@ function CardWithTextAndImage({
     <div
       className={`flex flex-row justify-between items-center gap-8 p-12 ${isReverse ? "flex-row-reverse" : ""}`}
     >
-      <img src={CardImage} alt="" className="h-112 object-cover rounded-2xl" />
-      <div className="flex flex-col w-full">
+      <img src={CardImage}  className="h-112 object-cover rounded-2xl" />
+      <div className="flex flex-col w-full gap-4">
         <h2 className="text-5xl font-semibold">{CardTitle}</h2>
         <p className="text-xl">{CardDescription}</p>
       </div>

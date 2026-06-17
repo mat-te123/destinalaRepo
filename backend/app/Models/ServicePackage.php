@@ -1,12 +1,18 @@
 <?php
+
 namespace App\Models;
-use App\Models\Traits\BelongsToTenant;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ServicePackage extends Model {
-    use BelongsToTenant;
-    protected $table = 'ServicePackages';
-    protected $primaryKey = 'Id';
-    public $timestamps = false;
-    protected $fillable = ['TenantId', 'PackageName', 'Price', 'Features', 'IsActive', 'PdfPath'];
+class ServicePackage extends Model
+{
+    use HasFactory;
+
+    protected $table = 'service_package';
+
+    protected $fillable = [
+        'service_id',
+        'package_id',
+    ];
 }

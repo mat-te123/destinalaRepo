@@ -2,7 +2,7 @@ import { Input, Label, Button } from "@heroui/react";
 
 function SectionWithEmailSection() {
   return (
-    <div className="bg-[url(../ContentPlaceholder.jpg)] bg-cover bg-center py-12 px-4 md:px-20 w-full gap-8">
+    <div className="bg-[url(../ContentPlaceholder.jpg)] bg-cover bg-center py-12 md:px-20 w-full h-200 gap-8 flex items-center justify-center">
       <div className="bg-white/80 rounded-3xl p-10 flex flex-col gap-8">
         {/* Header */}
         <div>
@@ -16,29 +16,37 @@ function SectionWithEmailSection() {
         {/* First Last Email input */}
         <div className="flex flex-row justify-between gap-4 w-full ">
           <div className="flex flex-col gap-2 w-full">
-            <Label htmlFor="firstName">Nama Depan</Label>
-            <Input id="firstName" placeholder="Masukkan nama depan anda" />
+            <Label htmlFor="firstName" isRequired>
+              Nama Depan
+            </Label>
+            <Input id="firstName" placeholder="Enter your first name" />
           </div>
           <div className="flex flex-col gap-2 w-full">
-            <Label htmlFor="lastName">Nama Belakang</Label>
-            <Input id="lastName" placeholder="Masukkan nama belakang anda" />
+            <Label htmlFor="lastName" isRequired>
+              Nama Belakang
+            </Label>
+            <Input id="lastName" placeholder="Enter your last name" />
           </div>
           <div className="flex flex-col gap-2 w-full">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" placeholder="Masukkan email anda" />
+            <Label htmlFor="email" isRequired>
+              Email
+            </Label>
+            <Input id="email" placeholder="Enter your email" />
           </div>
         </div>
         <div className="flex flex-col gap-2 w-full">
-          <Label htmlFor="message">Pesan</Label>
+          <Label htmlFor="message" isRequired>
+            Pesan
+          </Label>
           <Input
             id="message"
-            placeholder="Masukkan pesan anda"
+            placeholder="Enter your message"
             className="h-32"
           />
         </div>
         <div className="w-full flex justify-end">
           <Button className="bg-black text-white px-6 py-3 rounded-lg">
-            Kirim Pesan
+            Kontak Kami
           </Button>
         </div>
       </div>

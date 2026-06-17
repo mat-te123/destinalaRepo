@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -28,7 +27,6 @@ class AuthController extends Controller
      * "Id": 1,
      * "Name": "Admin Gadjah",
      * "Email": "admin@travel.com",
-     * "TenantId": 1
      * }
      * }
      * @response 401 {
@@ -36,29 +34,23 @@ class AuthController extends Controller
      * }
      */
     public function login(Request $request)
+    
     {
+
         $request->validate([
-            'Email' => 'required|email',
-            'Password' => 'required',
-            'Slug' => 'required' // Kita butuh slug untuk tahu ini admin perusahaan mana
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
+            
 
-        // 1. Cari Tenant berdasarkan Slug di URL
-        $tenant = Tenant::where('Slug', $request->Slug)->first();
-
-        if (!$tenant) {
-            return response()->json(['message' => 'Perusahaan tidak terdaftar.'], 404);
-        }
-
-        // 2. Cari User yang memiliki Email DAN TenantId yang cocok
-        $user = User::where('Email', $request->Email)
-                    ->where('TenantId', $tenant->Id)
+        // 2. Cari User yang memiliki Email yang cocok
+        $user = User::where('email', $request->email)
                     ->first();
 
         // 3. Validasi Password
-        if (!$user || !Hash::check($request->Password, $user->Password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'Email' => ['Kredensial yang Anda masukkan salah untuk perusahaan ini.'],
+                'email' => ['Email atau password salah.'],
             ]);
         }
 
@@ -69,9 +61,7 @@ class AuthController extends Controller
             'message' => 'Login Berhasil',
             'Token' => $token,
             'User' => [
-                'Name' => $user->Name,
-                'Email' => $user->Email,
-                'TenantName' => $tenant->Name
+                'email' => $user->email,
             ]
         ]);
     }

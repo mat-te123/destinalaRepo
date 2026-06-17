@@ -8,8 +8,10 @@ function Header_1() {
   const location = useLocation();
   const isEditor = location.pathname.includes("editor");
   return (
-    <div className="bg-[#FFFFFF] py-6 px-20 flex flex-row gap-10 items-center justify-between font-main">
-      <img src="../LogoPlaceholder.svg" alt="Logo" className="h-7" />
+    <div
+      className={`bg-[#FFFFFF] py-6 px-20 flex flex-row gap-10 items-center justify-between font-main ${isEditor ? "" : "absolute top-0 left-0 right-0 z-50"}`}
+    >
+      <img src="./LogoPlaceholder.svg" alt="Logo" className="h-7" />
       <div className="flex flex-row items-center justify-center gap-10 w-full">
         <span
           className="font-medium text-lg cursor-pointer"
@@ -36,12 +38,6 @@ function Header_1() {
           }
         >
           Destinasi
-        </span>
-        <span
-          className="font-medium text-lg cursor-pointer"
-          onClick={() => navigateTo("booking")}
-        >
-          Pemesanan
         </span>
         <span
           className="font-medium text-lg cursor-pointer"

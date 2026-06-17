@@ -1,22 +1,24 @@
-name: 'Profil & Kustomisasi'
-description: ''
+name: Authentication
+description: '* APIs untuk login dan logout admin perusahaan'
 endpoints:
   -
     custom: []
     httpMethods:
-      - GET
-    uri: api/admin/profile
+      - POST
+    uri: api/admin/auth/login
     metadata:
       custom: []
-      groupName: 'Profil & Kustomisasi'
-      groupDescription: ''
+      groupName: Authentication
+      groupDescription: '* APIs untuk login dan logout admin perusahaan'
       subgroup: ''
       subgroupDescription: ''
       title: |-
-        Ambil Profil Perusahaan
-        * Digunakan Frontend untuk mengambil Logo, Warna, dan Alias Menu.
-      description: ''
-      authenticated: true
+        Login Admin
+        * Gunakan endpoint ini untuk mendapatkan Bearer Token.
+      description: |-
+        Token ini wajib dikirim di header "Authorization" untuk semua API Admin.
+        * @bodyParam Email string required Email admin. Example: admin@travel.com
+      authenticated: false
       deprecated: false
     headers:
       Content-Type: application/json
@@ -25,19 +27,72 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      Email:
+        custom: []
+        name: Email
+        description: 'Must be a valid email address.'
+        required: true
+        example: qkunze@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      Password:
+        custom: []
+        name: Password
+        description: 'Password akun.'
+        required: true
+        example: password123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      Slug:
+        custom: []
+        name: Slug
+        description: 'Slug unik perusahaan (dari URL).'
+        required: true
+        example: |-
+          travel-gadjah
+          * @response {
+          "Token": "1|rahasia_token_sanctum_kamu",
+          "User": {
+          "Id": 1,
+          "Name": "Admin Gadjah",
+          "Email": "admin@travel.com",
+          "TenantId": 1
+          }
+          }
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      Email: qkunze@example.com
+      Password: password123
+      Slug: |-
+        travel-gadjah
+        * @response {
+        "Token": "1|rahasia_token_sanctum_kamu",
+        "User": {
+        "Id": 1,
+        "Name": "Admin Gadjah",
+        "Email": "admin@travel.com",
+        "TenantId": 1
+        }
+        }
     fileParameters: []
     responses:
       -
         custom: []
-        status: 200
+        status: 401
         content: |-
           {
-          "AboutUs": "Deskripsi perusahaan...",
-          "ServiceLabelAlias": "Produk Kami",
-          "PackageLabelAlias": "Pilihan Paket Wisata",
-          "Address": "Yogyakarta, Indonesia"
+          "message": "Login Gagal, periksa email/password atau slug perusahaan."
           }
         headers: []
         description: ''
@@ -49,19 +104,17 @@ endpoints:
   -
     custom: []
     httpMethods:
-      - PUT
-    uri: api/admin/profile
+      - POST
+    uri: api/admin/auth/logout
     metadata:
       custom: []
-      groupName: 'Profil & Kustomisasi'
-      groupDescription: ''
+      groupName: Authentication
+      groupDescription: '* APIs untuk login dan logout admin perusahaan'
       subgroup: ''
       subgroupDescription: ''
-      title: |-
-        Update Profil
-        * @bodyParam ServiceLabelAlias string Ubah nama menu "Service". Example: Layanan Kami
+      title: 'Handle Logout'
       description: ''
-      authenticated: true
+      authenticated: false
       deprecated: false
     headers:
       Content-Type: application/json
@@ -70,20 +123,8 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      PackageLabelAlias:
-        custom: []
-        name: PackageLabelAlias
-        description: 'Ubah nama menu "Package".'
-        required: false
-        example: 'Paket Spesial'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      PackageLabelAlias: 'Paket Spesial'
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []

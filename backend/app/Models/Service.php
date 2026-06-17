@@ -1,14 +1,27 @@
 <?php
+
 namespace App\Models;
 
-use App\Models\Traits\BelongsToTenant;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    use BelongsToTenant;
-    protected $table = 'Services';
-    protected $primaryKey = 'Id';
-    public $timestamps = false;
-    protected $fillable = ['TenantId', 'Title', 'Description', 'Icon', 'IsFeatured', 'PdfPath'];
+    use HasFactory;
+
+    protected $fillable = [
+        'main_title',
+        'main_desc',
+        'main_image',
+    ];
+
+    public function serviceContents()
+    {
+        return $this->hasMany(ServiceContent::class, );
+    }
+
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'service_package', 'service_id', 'package_id');
+    }
 }

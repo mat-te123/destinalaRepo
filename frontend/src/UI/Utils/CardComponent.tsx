@@ -1,5 +1,5 @@
 import type React from "react";
-import { TextComponent, NonEditableTextComponent } from "./TextComponent";
+import { TextComponent, StaticTextComponent } from "./TextComponent";
 
 interface CardProps {
   title?: string;
@@ -33,7 +33,7 @@ function StaticCardComponent({
   console.log(HasLinkClick);
   return (
     <div className={divTailwindClass} onClick={onCardClick}>
-      <NonEditableTextComponent
+      <StaticTextComponent
         TailwindStyle={TextTailwindClass}
         Context={Context}
         HasLinkClick={HasLinkClick}
@@ -41,6 +41,12 @@ function StaticCardComponent({
     </div>
   );
 }
+
+StaticCardComponent.craft = {
+  props: {
+    isEditable: false,
+  }
+};
 
 function CardComponent({
   title,
@@ -92,6 +98,12 @@ function CardComponent({
     </div>
   );
 }
+
+CardComponent.craft = {
+  props: {
+    isEditable: true,
+  },
+};
 
 export default CardComponent;
 export { StaticCardComponent };

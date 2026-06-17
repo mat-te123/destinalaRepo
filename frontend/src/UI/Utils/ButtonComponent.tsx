@@ -3,6 +3,27 @@ import { useNode } from "@craftjs/core";
 import { useEffect, useState } from "react";
 import { Button, Label, ListBox, Select } from "@heroui/react";
 
+
+interface StaticButtonProps {
+  children: React.ReactNode;
+  ButtonStyle: string;
+  TextStyle: string;
+}
+
+export const StaticButton = ({ children, ButtonStyle, TextStyle }: StaticButtonProps) => {
+  return (
+    <Button className={ButtonStyle}>
+      <span className={TextStyle}>{children}</span>
+    </Button>
+  )
+}
+
+StaticButton.craft = {
+  props: {
+    isEditable: false,
+  },
+};
+
 interface ButtonProps {
   context: string;
   backgroundColor?: string;
@@ -153,6 +174,7 @@ ButtonComponent.craft = {
     fontSize: "16px",
     variant: "primary",
     radius: 100,
+    isEditable: true,
   },
   related: {
     settings: ButtonSettings,

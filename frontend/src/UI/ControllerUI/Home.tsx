@@ -7,7 +7,7 @@ import {
 import Header from "../ReuseableUI/Header";
 import SettingController from "./Controller/SettingController";
 // import TemplateTest from "../Template/TemplateTest";
-import PreviewPage from "../Main/Viewport";
+import PreviewPage from "../Template/Pages/Home/Viewport";
 import ServicesPage_1 from "../Template/Pages/Services/ServicesPage_1";
 import FeaturedPage_1 from "../Template/Pages/Featured/FeaturedPage_1";
 // Editable Components
@@ -15,7 +15,6 @@ import FeaturedPage_1 from "../Template/Pages/Featured/FeaturedPage_1";
 function EditorLayout() {
   const DefaultWindowsLocation = window.location.href;
   console.log(DefaultWindowsLocation);
-
 
   const { currentPage } = useEditorNav();
 
@@ -48,7 +47,6 @@ function EditorLayout() {
               id="scroll"
             >
               <SettingController />
-
             </div>
           </div>
         </div>

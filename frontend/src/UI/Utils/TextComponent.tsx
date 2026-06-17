@@ -13,17 +13,17 @@ interface TextProps {
   textAlign?: string;
 }
 
-interface NonEditableTextProps {
+interface StaticTextProps {
   TailwindStyle?: string;
   Context?: string;
   HasLinkClick?: boolean;
 }
 
-export const NonEditableTextComponent = ({
+export const StaticTextComponent = ({
   TailwindStyle,
   Context,
   HasLinkClick = false,
-}: NonEditableTextProps) => {
+}: StaticTextProps) => {
   return (
     <div className={TailwindStyle + (HasLinkClick ? " cursor-pointer" : "")}>
       <p>{Context}</p>
@@ -32,7 +32,12 @@ export const NonEditableTextComponent = ({
   );
 };
 
-// ... (TextProps and NonEditableTextComponent remain the same)
+StaticTextComponent.craft = {
+  props: {
+    isEditable: false,
+  },
+};
+
 
 export const TextComponent = ({
   context,

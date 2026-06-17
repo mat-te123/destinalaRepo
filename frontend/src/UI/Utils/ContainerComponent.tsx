@@ -2,6 +2,26 @@ import { useNode } from "@craftjs/core";
 import React, { useRef } from "react";
 import type { CSSProperties } from "react";
 
+interface ContainerSettingsProps {
+  children: React.ReactNode;
+  DivStyle: string;
+}
+
+
+export const StaticContainer = ({ children, DivStyle }: ContainerSettingsProps) => {
+  return (
+    <div className={DivStyle}>
+      {children}
+    </div>
+  )
+};
+
+StaticContainer.craft = {
+  props: {
+    isEditable: false,
+  },
+};
+
 interface ContainerProps {
   background?: string;
   padding?: number[];
@@ -159,6 +179,7 @@ Container.craft = {
     imageopacity: 1,
     backgroundType: "color",
     islocked: false,
+    isEditable: true,
   },
   related: {
     settings: ContainerSettings,

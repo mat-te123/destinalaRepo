@@ -6,13 +6,13 @@ interface HeaderProps {
   
 }
 function Header({}: HeaderProps) {
-  const HomeIcon: string = "./HomeSmall.png";
-  const DesktopIcon: string = "./Desktop.png";
-  const MobileIcon: string = "./Mobile.png";
-  const LeftIcon: string = "./ArrowUUpLeft.png";
-  const RightIcon: string = "./ArrowUUpRight.png";
-  const SaveIcon: string = "./FloppyDisk.png";
-  const Dropdown: string = "./DropDown.png";
+  const HomeIcon: string = "../HomeSmall.png";
+  const DesktopIcon: string = "../Desktop.png";
+  const MobileIcon: string = "../Mobile.png";
+  const LeftIcon: string = "../ArrowUUpLeft.png";
+  const RightIcon: string = "../ArrowUUpRight.png";
+  const SaveIcon: string = "../FloppyDisk.png";
+  const Dropdown: string = "../DropDown.png";
 
   const navigate = useNavigate();
   const PreviewPage = () => {

@@ -1,22 +1,22 @@
-name: 'Manajemen Layanan'
+name: 'Profil & Kustomisasi'
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: api/admin/services
+    uri: api/admin/profile
     metadata:
       custom: []
-      groupName: 'Manajemen Layanan'
+      groupName: 'Profil & Kustomisasi'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: |-
-        List Data
-        * Mengambil semua data yang hanya dimiliki oleh perusahaan yang sedang login.
+        Ambil Profil Perusahaan
+        * Digunakan Frontend untuk mengambil Logo, Warna, dan Alias Menu.
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
     headers:
       Content-Type: application/json
@@ -31,124 +31,16 @@ endpoints:
     responses:
       -
         custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/admin/services
-    metadata:
-      custom: []
-      groupName: 'Manajemen Layanan'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: |-
-        Simpan Data Baru
-        * @bodyParam PdfFile file Opsional file PDF.
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      ImageFile:
-        custom: []
-        name: ImageFile
-        description: 'Opsional file gambar (JPG/PNG).'
-        required: false
-        example: null
-        type: file
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      '*':
-        custom: []
-        name: '*'
-        description: 'Data lainnya sesuai kolom tabel (CamelCase).'
-        required: false
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      '*': consequatur
-    fileParameters:
-      ImageFile: null
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/admin/services/{id}'
-    metadata:
-      custom: []
-      groupName: 'Manajemen Layanan'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: |-
-        Detail Data
-        * @urlParam id integer required ID data. Example: 1
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the service.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+          "AboutUs": "Deskripsi perusahaan...",
+          "ServiceLabelAlias": "Produk Kami",
+          "PackageLabelAlias": "Pilihan Paket Wisata",
+          "Address": "Yogyakarta, Indonesia"
+          }
+        headers: []
+        description: ''
     responseFields: []
     auth: []
     controller: null
@@ -158,98 +50,40 @@ endpoints:
     custom: []
     httpMethods:
       - PUT
-      - PATCH
-    uri: 'api/admin/services/{id}'
+    uri: api/admin/profile
     metadata:
       custom: []
-      groupName: 'Manajemen Layanan'
+      groupName: 'Profil & Kustomisasi'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: |-
-        Update Data
-        * @urlParam id integer required ID data.
+        Update Profil
+        * @bodyParam ServiceLabelAlias string Ubah nama menu "Service". Example: Layanan Kami
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the service.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      _method:
+      PackageLabelAlias:
         custom: []
-        name: _method
-        description: 'Gunakan "PUT" jika mengirim via Form-Data.'
-        required: true
-        example: PUT
+        name: PackageLabelAlias
+        description: 'Ubah nama menu "Package".'
+        required: false
+        example: 'Paket Spesial'
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      _method: PUT
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - DELETE
-    uri: 'api/admin/services/{id}'
-    metadata:
-      custom: []
-      groupName: 'Manajemen Layanan'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: |-
-        Hapus Data
-        * @urlParam id integer required ID data yang akan dihapus.
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the service.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+      PackageLabelAlias: 'Paket Spesial'
     fileParameters: []
     responses: []
     responseFields: []

@@ -7,9 +7,11 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\PackageController;
 use App\Http\Controllers\Api\TestimonialController;
-use App\Http\Controllers\Api\FaqController;
-use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\CustomerController;
+// use App\Http\Controllers\Api\FaqController;
+// use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\PageConfigController;
+use App\Http\Controllers\Api\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +25,27 @@ use App\Http\Controllers\Api\PageConfigController;
 Route::prefix('v1/public')->group(function () {
     // Mengambil konfigurasi tampilan (Warna, Logo, Nama Menu/Alias)
     // Contoh: /api/v1/public/config?slug=perusahaan-a
-    Route::get('/config', [ProfileController::class, 'showPublicConfig']);
+    // Route::get('/config', [ProfileController::class, 'showPublicConfig']);
     Route::get('/page-config/{pageKey}', [PageConfigController::class, 'show']);
 
     // Mengambil data konten untuk ditampilkan di landing page
-    Route::get('/services', [ServiceController::class, 'indexPublic']);
-    Route::get('/packages', [PackageController::class, 'indexPublic']);
+    // Services API
+    Route::get('/services', [ServiceController::class, 'index']);
+    Route::get('/services/home', [ServiceController::class, 'homeshow']);
+    Route::get('/service/{id}', [ServiceController::class, 'show'])->whereNumber('id'); 
+
+    // Destinations API
+    Route::get('/destinations', [DestinationController::class, 'index']);
+    Route::get('/destinations/home', [DestinationController::class, 'homeshow']);
+    Route::get('/destination/{id}', [DestinationController::class, 'show'])->whereNumber('id');
+
+    // Packages API
+    Route::get('/packages/service/{id}', [PackageController::class, 'indexServices']);
+    Route::get('/packages/destination/{id}', [PackageController::class, 'indexDestinations']);
+    Route::get('/package/{id}', [PackageController::class, 'Show'])->whereNumber('id');
     Route::get('/testimonials', [TestimonialController::class, 'indexPublic']);
-    Route::get('/faqs', [FaqController::class, 'indexPublic']);
+    // Route::get('/faqs', [FaqController::class, 'indexPublic']);
+
 });
 
 /*
@@ -40,6 +55,8 @@ Route::prefix('v1/public')->group(function () {
 | Bagian ini adalah untuk admin masing-masing perusahaan.
 | URL login dibuat spesifik agar tidak mudah ditebak oleh publik.
 */
+
+Route::get('/customer/count', [CustomerController::class, 'countData']);
 
 // 1. Route Autentikasi (Public - Tanpa Token)
 Route::post('/admin/auth/login', [AuthController::class, 'login']);
@@ -51,8 +68,8 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
     // Manajemen Profil & Kustomisasi (About, Contact, Labels)
-    Route::get('/profile', [ProfileController::class, 'show']);
-    Route::put('/profile', [ProfileController::class, 'update']);
+    // Route::get('/profile', [ProfileController::class, 'show']);
+    // Route::put('/profile', [ProfileController::class, 'update']);
 
     // CRUD Layanan (Services)
     Route::apiResource('services', ServiceController::class);
@@ -64,6 +81,9 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::apiResource('testimonials', TestimonialController::class);
 
     // CRUD FAQ (Help & Support)
-    Route::apiResource('faqs', FaqController::class);
+    // Route::apiResource('faqs', FaqController::class);
+
+
+// CMS Data
 
 });
