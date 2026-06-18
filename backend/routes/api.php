@@ -57,6 +57,11 @@ Route::prefix('v1/public')->group(function () {
 */
 
 Route::get('/customer/count', [CustomerController::class, 'countData']);
+Route::get('/destinations/cms', [DestinationController::class, 'CMSIndex']);
+Route::get('/packages/cms', [PackageController::class, 'cmsIndex']);
+Route::get('/testimonials/cms', [TestimonialController::class, 'cmsIndex']);
+
+
 
 // 1. Route Autentikasi (Public - Tanpa Token)
 Route::post('/admin/auth/login', [AuthController::class, 'login']);

@@ -13,6 +13,7 @@ interface DestinationProps {
   title: String;
   desc?: String;
   ButtonText: String;
+  ScrollView?: boolean;
 }
 
 function FormModal({ onClose }: FormProps) {
@@ -53,12 +54,18 @@ function FormModal({ onClose }: FormProps) {
   );
 }
 
-function Template({ children, title, desc, ButtonText }: DestinationProps) {
+function Template({
+  children,
+  title,
+  desc,
+  ButtonText,
+  ScrollView = false,
+}: DestinationProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     // KUNCI 1: Paksa parent mengisi tepat 1 layar penuh dan kunci scrollbar browser utama
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="h-screen flex flex-col bg-white ">
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <FormModal onClose={() => setIsModalOpen(false)} />
@@ -69,7 +76,7 @@ function Template({ children, title, desc, ButtonText }: DestinationProps) {
       <Header />
 
       {/* KUNCI 2: Pembungkus konten utama menggunakan flex-col */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden font-main">
         {/* Title Section (Gunakan flex-shrink-0 agar tingginya tidak menyusut) */}
         <div className="px-10 py-6 flex flex-row justify-between items-center shrink-0">
           <div className="flex flex-col gap-1">
@@ -93,7 +100,11 @@ function Template({ children, title, desc, ButtonText }: DestinationProps) {
 
         {/* KUNCI 3: Ubah h-screen menjadi flex-1 overflow-hidden */}
         {/* Tempat children dirender sekarang fleksibel mengikuti sisa ruang bawah layar */}
-        <div className="p-10 bg-[#F8F8FA] flex-1">{children}</div>
+        <div
+          className={`p-10 bg-[#F8F8FA] flex-1 ${ScrollView ? "overflow-y-auto" : "overflow-hidden"}`}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

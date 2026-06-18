@@ -1,11 +1,23 @@
 import axios from "axios";
-import { PUBLIC_API_URL } from "../config";
+import { BASE_URL, PUBLIC_API_URL } from "../config";
 
 export const PackageAPI = {
   getIndexServices: async (id: number) => {
     try {
       const response = await axios.get(
         `${PUBLIC_API_URL}packages/service/${id}`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching packages:", error);
+      throw error;
+    }
+  },
+
+  getIndexCMS: async (id: number) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/packages/cms?page=${id}`,
       );
       return response.data;
     } catch (error) {

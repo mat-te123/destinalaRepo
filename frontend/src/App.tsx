@@ -32,6 +32,7 @@ import DestinationDetail from "./UI/Main/Destination/DestinationDetail";
 import PackageData from "./UI/Main/Package/PackageData";
 import PackageDetail from "./UI/Main/Package/PackageDetail";
 import TestimoniData from "./UI/Main/Testimoni/TestimoniData";
+import ContentPage from "./UI/Main/Content/ContentPage";
 
 const resolver = {
   TextComponent,
@@ -79,14 +80,15 @@ function App() {
           <Route path="service" element={<Service />} />
           <Route path="destination">
             <Route index element={<DestinationData />} />
-            <Route path="detail" element={<DestinationDetail />} />
+            <Route path=":id" element={<DestinationDetail />} />
           </Route>
           <Route path="package">
             <Route index element={<PackageData />} />
-            <Route path="detail" element={<PackageDetail />} />
+            <Route path=":id" element={<PackageDetail />} />
+            {/* ChangeToId Later */}
           </Route>
           <Route path="testimoni" element={<TestimoniData />} />
-          {/* ChangeToId Later */}
+          <Route path="content" element={<ContentPage />} />
         </Route>
         <Route path="/" element={<PreviewPage />} />
         <Route path="/destinations" element={<DestinationPage />} />

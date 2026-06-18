@@ -1,7 +1,9 @@
 import { Button, Table, Form, Label, Input } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Package from "./Index";
+import { PackageAPI } from "../../../Api/Services/PackageAPI";
+import { type CMSPage } from "./PackageInterface";
 
 interface FormProps {
   onClose: () => void;
@@ -46,8 +48,25 @@ function FormModal({ onClose }: FormProps) {
 }
 
 function PackageData() {
+  const [packages, setPackages] = useState<CMSPage | null>(null);
+  const [Page, setPage] = useState(1);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const fetchPackageData = async (Page: number) => {
+    try {
+      const response = await PackageAPI.getIndexCMS(Page);
+      setPackages(response.data); // Sesuaikan dengan struktur respons API-mu
+    } catch (error) {
+      console.error("Error fetching package data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPackageData(Page);
+  }, [Page]);
+
+  console.log("Fetched Packages:", packages); // Debug log untuk memastikan data diterima
   return (
     <Package>
       <p className="text-gray-500 mb-5 text-sm">
@@ -70,42 +89,30 @@ function PackageData() {
               <Table.Column>Aksi</Table.Column>
             </Table.Header>
             <Table.Body>
-              <Table.Row>
-                {/* Nyamvung Database nanti */}
-                <Table.Cell>
-                  <img
-                    src="../ContentPlaceholder.jpg"
-                    className="h-12 aspect-square rounded-xl border-2 border-gray-300"
-                  />
-                </Table.Cell>
-                <Table.Cell>John Doe</Table.Cell>
-                <Table.Cell>John Doe</Table.Cell>
-                <Table.Cell>
-                  <Button onClick={() => navigate("detail")}>
-                    Lihat Detail
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Delete
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <img
-                    src="../ContentPlaceholder.jpg"
-                    className="h-12 aspect-square rounded-xl border-2 border-gray-300"
-                  />
-                </Table.Cell>
-                <Table.Cell>Jane Smith</Table.Cell>
-                <Table.Cell>Jane Smith</Table.Cell>
-                <Table.Cell>
-                  <Button>Kelola Konten</Button>
-                  <Button variant="danger">Delete</Button>
-                </Table.Cell>
-              </Table.Row>
+              {packages?.data.map((item, index) => (
+                <Table.Row key={index}>
+                  {/* Nyamvung Database nanti */}
+                  <Table.Cell>
+                    <img
+                      src="../ContentPlaceholder.jpg"
+                      className="h-12 aspect-square rounded-xl border-2 border-gray-300"
+                    />
+                  </Table.Cell>
+                  <Table.Cell>{item.main_title}</Table.Cell>
+                  <Table.Cell>{item.package_contents_count}</Table.Cell>
+                  <Table.Cell>
+                    <Button onClick={() => navigate(`${item.id}`)}>
+                      Lihat Detail
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Delete
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
             </Table.Body>
           </Table.Content>
         </Table.ScrollContainer>

@@ -25,7 +25,7 @@ function Sidebar() {
     { name: "Package", icon: Package },
     { name: "Form Data", icon: DataBase },
     { name: "Testimoni Data", icon: Star },
-    { name: "Add Page", icon: PagesIcon },
+    { name: "Content", icon: PagesIcon },
   ];
 
   return (

@@ -6,7 +6,14 @@ export interface DestinationIndexRespond {
 }
 
 export interface CMSIndexRespond {
-  
+  id: number;
+  main_title: string;
+  content_count: number;
+  connected_packages: {
+    id: number;
+    title: string;
+  }[];
+  created_at: string;
 }
 
 export interface DestinationHomeRespond {
@@ -33,9 +40,9 @@ export interface DestinationPage {
   prev_page_url: string | null;
 }
 
-export interface DestinationCMSRespond {
+export interface CMSPage {
   current_page: number;
-  data: DestinationIndexRespond[];
+  data: CMSIndexRespond[];
   last_page: number;
   total: number;
   next_page_url: string | null;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PUBLIC_API_URL } from "../config";
+import { PUBLIC_API_URL, BASE_URL } from "../config";
 
 export const DestinationAPI = {
   getIndex: async (page: number) => {
@@ -10,6 +10,18 @@ export const DestinationAPI = {
       return response.data;
     } catch (error) {
       console.error("Error fetching destinations:", error);
+      throw error;
+    }
+  },
+
+  getCMSIndex: async (page: number) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/destinations/cms?page=${page}`,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching CMS destinations:", error);
       throw error;
     }
   },

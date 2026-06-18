@@ -40,6 +40,42 @@ class DestinationController extends Controller
         ], 200);
     }
 
+    function CMSIndex() {
+        // 1. Ambil data dengan query yang efisien
+        $destinations = Destination::query()
+            ->select('id', 'main_title', 'created_at') // Ambil kolom yang diperlukan saja
+            ->withCount('destinationContents')         // Otomatis menghasilkan attribute 'destination_contents_count'
+            ->with(['packages' => function ($query) {
+                $query->select('id', 'destination_id', 'main_title'); // Hanya ambil ID dan Judul Paket
+            }])
+            ->latest()
+            ->paginate(8); // Menggunakan pagination (sesuai rekomendasi data tabel master)
+
+        // 2. Transformasi data agar strukturnya rapi saat diterima React
+        $destinations->getCollection()->transform(function ($destination) {
+            return [
+                'id' => $destination->id,
+                'main_title' => $destination->main_title,
+                'contents_count' => $destination->destination_contents_count,
+                'connected_packages' => $destination->packages->map(function ($package) {
+                    return [
+                        'id' => $package->id,
+                        'title' => $package->main_title,
+                    ];
+                }),
+                // Format tanggal menjadi teks yang mudah dibaca (Contoh: 18 Juni 2026)
+                'created_at' => $destination->created_at->translatedFormat('d F Y'),
+            ];
+        });
+
+        // 3. Kembalikan dalam bentuk JSON Response
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data destinasi berhasil diambil',
+            'data' => $destinations
+        ], 200);
+    }
+
 
     function show(int $id){
         $mainData = Destination::select(
