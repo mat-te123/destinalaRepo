@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
 {
@@ -41,7 +42,7 @@ class TestimonialController extends Controller
         $averageRating = round($query->avg('value') ?? 0, 1);
 
         // 5. Eksekusi Pagination (ambil 10 data per halaman)
-        $testimonials = $query->latest()->paginate(10);
+        $testimonials = $query->latest()->paginate(5);
 
         // 6. Transformasi Data agar sesuai dengan kebutuhan Kolom Tabel HeroUI
         $testimonials->getCollection()->transform(function ($testimonial) {
